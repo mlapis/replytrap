@@ -2,6 +2,10 @@
 
 Free and open source AI-powered scambaiting suite that monitors email accounts, detects scams, and uses customizable personas to engage scammers in conversations that waste their time.
 
+## Demo
+
+https://github.com/user-attachments/assets/c3aeb235-b423-4406-aa0c-df8b5ee18d58
+
 ## Quick Start
 
 ### Docker Setup
