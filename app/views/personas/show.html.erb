@@ -1,0 +1,18 @@
+<% content_for :page_actions do %>
+  <%= link_to "Edit", edit_persona_path(@persona), class: "btn btn-primary" %>
+  <%= button_to "Delete", @persona, method: :delete, 
+                class: "btn btn-outline-danger", 
+                confirm: "Are you sure?",
+                form: { class: "d-inline" } %>
+  <%= link_to "Back to personas", personas_path, class: "btn" %>
+<% end %>
+
+<%= render "shared/page_header", title: "Persona Details" %>
+
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card">
+      <%= render @persona %>
+    </div>
+  </div>
+</div>

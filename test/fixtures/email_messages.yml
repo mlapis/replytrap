@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subject: "Urgent Business Proposal"
+  body: "Dear sir/madam, I have a business proposal of $10 million dollars..."
+  direction: inbound
+  message_id: test-message-1
+  conversation: one
+
+two:
+  subject: "Your account has been suspended"
+  body: "Click here to verify your account immediately or it will be closed..."
+  direction: inbound
+  message_id: test-message-2
+  conversation: two

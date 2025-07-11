@@ -1,0 +1,5 @@
+class AddPersonaToEmailAccounts < ActiveRecord::Migration[8.0]
+  def change
+    add_reference :email_accounts, :persona, null: true, foreign_key: true
+  end
+end

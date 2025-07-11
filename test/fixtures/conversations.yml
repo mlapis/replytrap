@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email_contact: scammer@badguys.com
+  classification: scammer
+  status: active
+  email_account: one
+
+two:
+  email_contact: phisher@fake.net
+  classification: unknown
+  status: active
+  email_account: two

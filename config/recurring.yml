@@ -1,0 +1,19 @@
+development:
+  email_fetcher:
+    class: EmailFetcherJob
+    queue: default
+    schedule: every 5 minutes
+  auto_response:
+    class: AutoResponseJob
+    queue: default
+    schedule: every hour
+
+production:
+  email_fetcher:
+    class: EmailFetcherJob
+    queue: default
+    schedule: every 5 minutes
+  auto_response:
+    class: AutoResponseJob
+    queue: default
+    schedule: every hour

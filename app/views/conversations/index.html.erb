@@ -1,0 +1,26 @@
+<% content_for :title, "Conversations" %>
+
+<%= render "shared/page_header", title: "Conversations" %>
+
+<div class="mb-3 d-flex justify-content-between">
+  <div class="btn-group" role="group">
+    <%= link_to "Scammers Only", conversations_path(mode: "scammers"), 
+        class: "btn #{'btn-primary' if @mode == 'scammers'} #{'btn-outline-primary' if @mode == 'all'}" %>
+    <%= link_to "All Emails", conversations_path(mode: "all"), 
+        class: "btn #{'btn-primary' if @mode == 'all'} #{'btn-outline-primary' if @mode == 'scammers'}" %>
+  </div>
+  <%= button_to "Fetch Emails Manually", fetch_emails_conversations_path, method: :post, class: "btn btn-success" %>
+</div>
+
+<div id="conversations" class="row row-cards">
+  <% @conversations.each do |conversation| %>
+    <div class="col-md-6 col-lg-4">
+      <div class="card">
+        <%= render conversation %>
+        <div class="card-footer">
+          <%= link_to "Show this conversation", conversation, class: "btn btn-outline-primary btn-sm" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

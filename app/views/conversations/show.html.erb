@@ -1,0 +1,70 @@
+<% content_for :page_actions do %>
+  <%= button_to @conversation.status == "active" ? "Pause Auto-Reply" : "Resume Auto-Reply", 
+                toggle_status_conversation_path(@conversation), 
+                method: :patch, 
+                class: "btn btn-outline-#{@conversation.status == 'active' ? 'warning' : 'success'}",
+                form: { class: "d-inline" } %>
+  <%= button_to "Delete", @conversation, method: :delete, 
+                class: "btn btn-outline-danger", 
+                data: { turbo_confirm: "Are you sure you want to delete this conversation? This action cannot be undone." },
+                form: { class: "d-inline" } %>
+  <%= link_to "Back to conversations", conversations_path, class: "btn" %>
+<% end %>
+
+<%= render "shared/page_header", title: "Conversation Details" %>
+
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card">
+      <%= render @conversation %>
+    </div>
+    
+    <% if @conversation.email_messages.any? %>
+      <div class="card mt-4">
+        <div class="card-header">
+          <h3 class="card-title">Email Thread</h3>
+        </div>
+        <div class="card-body">
+          <% @conversation.email_messages.order(:created_at).each do |message| %>
+            <div class="mb-4 <%= 'border-start border-4 border-primary ps-3' if message.direction == 'outbound' %>">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <div>
+                  <strong><%= message.direction == 'inbound' ? @conversation.email_contact : 'You' %></strong>
+                  <small class="text-muted ms-2"><%= message.created_at.strftime("%b %d, %Y at %I:%M %p") %></small>
+                </div>
+                <span class="badge <%= message.direction == 'outbound' ? 'bg-primary text-white' : 'bg-secondary text-white' %>">
+                  <%= message.direction.capitalize %>
+                </span>
+              </div>
+              <h6 class="mb-2"><%= message.subject %></h6>
+              <div class="text-muted"><%= simple_format(message.text_content) %></div>
+            </div>
+            <hr class="my-3">
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    
+    <div class="card mt-4">
+      <div class="card-header">
+        <div>
+          <h3 class="mb-2">Send Reply Manually</h3>
+          <div class="text-muted">The system handles replies automatically, but you can absolutely respond personally whenever you'd like</div>
+        </div>
+      </div>
+      <div class="card-body" data-controller="response-generator">
+        <%= form_with url: send_reply_conversation_path(@conversation), method: :post, local: true do |form| %>
+          <div class="mb-3">
+            <%= form.text_area :response_text, rows: 6, class: "form-control", placeholder: "Type your response or generate one using AI...", data: { response_generator_target: "textarea" } %>
+          </div>
+          <div>
+            <button type="button" class="btn btn-outline-primary me-2" data-conversation-id="<%= @conversation.id %>" data-response-generator-target="button" data-action="click->response-generator#generate">
+              Generate Response
+            </button>
+            <%= form.submit "Send Reply", class: "btn btn-success", confirm: "Send this reply?" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

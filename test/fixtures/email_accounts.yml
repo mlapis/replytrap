@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: honeypot1@example.com
+  fetch_server: imap.example.com:993
+  smtp_server: smtp.example.com:587
+  username: honeypot1@example.com
+  password: testpass123
+  active: true
+  last_checked_at: 2025-06-27 13:12:16
+  status: connected
+  error_message: null
+  fetch_protocol: imap
+  user: one
+  persona: one
+
+two:
+  email: honeypot2@example.com
+  fetch_server: pop.example.com:995
+  smtp_server: smtp.example.com:587
+  username: honeypot2@example.com
+  password: testpass456
+  active: true
+  last_checked_at: 2025-06-27 13:12:16
+  status: connected
+  error_message: null
+  fetch_protocol: pop3
+  user: two
+  persona: two

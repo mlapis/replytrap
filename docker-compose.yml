@@ -1,0 +1,41 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3030:80"
+    environment:
+      - RAILS_ENV=development
+      - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+      - OLLAMA_URL=http://ollama:11434
+      - SIMPLE_DEPLOYMENT=true
+      - USE_LOCAL_LLM=true
+      - SOLID_QUEUE_IN_PUMA=true
+      - SINGLE_USER_MODE=true
+    volumes:
+      - .:/rails
+      - db_data:/rails/db
+      - storage_data:/rails/storage
+    depends_on:
+      ollama:
+        condition: service_healthy
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11435:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+      - ./docker/ollama_health_check.sh:/root/ollama_health_check.sh
+    entrypoint: ["/bin/bash", "-c", "ollama serve & sleep 5 && echo '🔴 Downloading llama3.2:3b model...' && ollama pull llama3.2:3b && echo '🟢 Model ready!' && wait"]
+    healthcheck:
+      test: ["CMD", "/bin/bash", "/root/ollama_health_check.sh"]
+      interval: 5s
+      timeout: 5s
+      retries: 240
+    restart: unless-stopped
+
+volumes:
+  db_data:
+  storage_data:
+  ollama_data:

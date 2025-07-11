@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: "Eager Investor"
+  description: "A gullible investor interested in get-rich-quick schemes"
+  user: one
+
+two:
+  name: "Lonely Widow"
+  description: "An elderly person seeking companionship and easily manipulated"
+  user: two

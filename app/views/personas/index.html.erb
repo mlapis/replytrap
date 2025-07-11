@@ -1,0 +1,16 @@
+<% content_for :title, "Personas" %>
+<% content_for :page_actions do %>
+  <%= link_to "New persona", new_persona_path, class: "btn btn-primary" %>
+<% end %>
+
+<%= render "shared/page_header", title: "Personas" %>
+
+<div id="personas" class="row row-cards">
+  <% @personas.each do |persona| %>
+    <div class="col-md-6 col-lg-4">
+      <div class="card">
+        <%= render persona %>
+      </div>
+    </div>
+  <% end %>
+</div>

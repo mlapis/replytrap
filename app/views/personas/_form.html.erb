@@ -1,0 +1,54 @@
+<%= form_with(model: persona, class: "card", data: { controller: "persona" }) do |form| %>
+  <div class="card-body">
+    <% if persona.errors.any? %>
+      <div class="alert alert-danger">
+        <h4 class="alert-title">
+          <%= pluralize(persona.errors.count, "error") %> prohibited this persona from being saved:
+        </h4>
+        <ul class="mb-0">
+          <% persona.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="alert alert-info mb-4" role="alert">
+      <div>
+        <strong>Personas shape how the AI responds to scammers.</strong><br/> Have fun with it - good personas keep scammers engaged longer and create more memorable conversations.<br/> We prepared a random persona generator that should be a great starting point
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :name, class: "form-label" %>
+      <div class="input-group">
+        <%= form.text_field :name, class: "form-control" %>
+        <button type="button" class="btn btn-outline-secondary" data-action="click->persona#generateRandom">
+          🎲 Generate Random Persona
+        </button>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :description, class: "form-label" %>
+      <%= form.text_area :description, class: "form-control", rows: 12 %>
+      <div class="form-hint">Describe this AI persona's characteristics and behavior</div>
+    </div>
+
+    <div class="mb-3">
+      <button type="button" class="btn btn-outline-info btn-sm" data-action="click->persona#testPersona">
+        🧪 Test Me
+      </button>
+    </div>
+
+    <div class="mb-3 d-none" data-persona-target="testResponse">
+      <label class="form-label">Test Response</label>
+      <div class="alert alert-info"></div>
+    </div>
+  </div>
+
+  <div class="card-footer text-end">
+    <%= link_to "Cancel", personas_path, class: "btn me-2" %>
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

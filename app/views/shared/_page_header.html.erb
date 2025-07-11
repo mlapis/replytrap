@@ -1,0 +1,21 @@
+<div class="page-header d-print-none">
+  <div class="row g-2 align-items-center">
+    <div class="col">
+      <% if defined?(pretitle) && pretitle %>
+        <div class="page-pretitle">
+          <%= pretitle %>
+        </div>
+      <% end %>
+      <h2 class="page-title">
+        <%= title %>
+      </h2>
+    </div>
+    <% if content_for?(:page_actions) %>
+      <div class="col-auto ms-auto">
+        <div class="btn-list">
+          <%= content_for(:page_actions) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
