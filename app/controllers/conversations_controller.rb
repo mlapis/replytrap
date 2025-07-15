@@ -4,7 +4,7 @@ class ConversationsController < ApplicationController
   # GET /conversations or /conversations.json
   def index
     @mode = params[:mode] == "all" ? "all" : "scammers"
-    
+
     @conversations = if @mode == "all"
       current_user.conversations
     else

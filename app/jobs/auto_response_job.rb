@@ -4,7 +4,7 @@ class AutoResponseJob < ApplicationJob
   def perform
     ready_conversations.each do |conversation|
       delay_minutes = calculate_response_delay
-      #SendResponseJob.set(wait: delay_minutes.minutes).perform_later(conversation.id)
+      # SendResponseJob.set(wait: delay_minutes.minutes).perform_later(conversation.id)
       SendResponseJob.perform_now(conversation.id)
     end
   end
