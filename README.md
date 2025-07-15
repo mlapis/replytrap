@@ -4,9 +4,10 @@ Free and open source AI-powered scambaiting suite that monitors email accounts, 
 
 ## Demo
 
-https://github.com/user-attachments/assets/c3aeb235-b423-4406-aa0c-df8b5ee18d58
 
 ## Quick Start
+
+https://github.com/user-attachments/assets/5cd2b41a-c4f6-4d40-8856-9228c1a6f3cd
 
 ### Docker Setup
 
