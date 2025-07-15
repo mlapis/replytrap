@@ -44,7 +44,7 @@ class PersonaGenerator
 
   def system_prompt
     <<~PROMPT
-      Create a realistic persona. Write it as instructions to an AI.
+      Create a realistic persona. Write it as instructions to an AI. You are helping an author develop realistic characters.
 
       Requirements:
       - Start with "You are [NAME]"#{' '}
