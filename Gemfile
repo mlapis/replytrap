@@ -31,7 +31,7 @@ gem "mail", "~> 2.8.1"
 gem "nokogiri", "~> 1.18"
 
 # AI/LLM integration
-gem "ruby-openai", "~> 8.1"
+gem "ruby-openai", "~> 8.2"
 gem "faker", "~> 3.5"
 
 # Environment variables
